@@ -1,48 +1,59 @@
-var del = require('del');
-var gulp = require('gulp');
+"use strict";
 
-module.exports = function (config) {
+var del = require("del");
+var gulp = require("gulp");
 
-    gulp.task('clean', function (done) {
-        var delconfig = [].concat(config.buildDir, './.sass-cache/', config.tempDir, './report/');
-
-        config.log('Cleaning: ' + config.$.util.colors.blue(delconfig));
-
-        del(delconfig, done);
-    });
-
-    gulp.task('clean-fonts', function (done) {
-        clean(config.buildDir + 'fonts/**/*.*', done);
-    });
-
-    gulp.task('clean-images', function (done) {
-        clean(config.buildDir + 'images/**/*.*', done);
-    });
-
-    gulp.task('clean-code', function (done) {
-        var files = [].concat(
-            config.tempDir + '**/*.js',
-            config.buildDir + '**/*.js',
-            config.buildDir + '**/*.html'
+module.exports = function(config) {
+    gulp.task("clean", function() {
+        var delconfig = [].concat(
+            config.buildDir,
+            "./.sass-cache/",
+            config.tempDir,
+            "./report/"
         );
 
-        clean(files, done);
+        config.log("Cleaning: " + config.$.util.colors.blue(delconfig));
+
+        return del(delconfig);
     });
 
-    gulp.task('clean-styles', function (done) {
+    gulp.task("clean-fonts", function() {
+        return clean(config.buildDir + "fonts/**/*.*");
+    });
+
+    gulp.task("clean-images", function() {
+        return clean(config.buildDir + "images/**/*.*");
+    });
+    gulp.task("clean-data", function() {
+        return clean(config.buildDir + "data/**/*.*");
+    });
+    gulp.task("clean-code", function() {
         var files = [].concat(
-            config.tempDir + '**/*.css',
-            config.buildDir + '**/*.css'
+            config.tempDir + "**/*.js",
+            config.buildDir + "**/*.js",
+            config.buildDir + "**/*.html"
         );
 
-        clean(files, done);
+        return clean(files);
     });
 
-    function clean(path, done) {
-        config.log('Cleaning: ' + config.$.util.colors.blue(path));
-        del(path, done);
+    gulp.task("clean-pdfjs", function() {
+        return clean(config.buildDir + "pdfjs/**/*.*");
+    });
+    gulp.task("clean-webconfig", function() {
+        return clean(config.buildDir + "**/*.config");
+    });
+    gulp.task("clean-styles", function() {
+        var files = [].concat(
+            config.tempDir + "**/*.css",
+            config.buildDir + "**/*.css"
+        );
+
+        return clean(files);
+    });
+
+    function clean(path) {
+        config.log("Cleaning: " + config.$.util.colors.blue(path));
+        return del(path);
     }
-
-
 };
-

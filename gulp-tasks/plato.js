@@ -1,12 +1,13 @@
-var plato = require('plato');
-var glob = require('glob');
-var gulp = require('gulp');
+"use strict";
 
-module.exports = function (config) {
+var plato = require("plato");
+var glob = require("glob");
+var gulp = require("gulp");
 
-    gulp.task('plato', function (done) {
-        config.log('Analyzing source with Plato');
-        config.log('Browse to /report/plato/index.html to see Plato results');
+module.exports = function(config) {
+    gulp.task("plato", function(done) {
+        config.log("Analyzing source with Plato");
+        config.log("Browse to /report/plato/index.html to see Plato results");
 
         startPlatoVisualizer(done);
     });
@@ -15,16 +16,16 @@ module.exports = function (config) {
      * Start Plato inspector and visualizer
      */
     function startPlatoVisualizer(done) {
-        config.log('Running Plato');
+        config.log("Running Plato");
 
-        var files = glob.sync(config.sourceDir + '**/*.js');
+        var files = glob.sync(config.sourceDir + "**/*.js");
         var excludeFiles = /.*\.spec\.js/;
 
         var options = {
-            title: 'Plato Inspections Report',
+            title: "Plato Inspections Report",
             exclude: excludeFiles
         };
-        var outputDir = './report/plato';
+        var outputDir = "./report/plato";
 
         plato.inspect(files, outputDir, options, platoCompleted);
 
@@ -38,6 +39,4 @@ module.exports = function (config) {
             }
         }
     }
-
 };
-

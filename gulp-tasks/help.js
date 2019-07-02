@@ -1,8 +1,5 @@
-var gulp = require('gulp');
+var gulp = require("gulp");
 
-module.exports = function (config) {
-
-    gulp.task('help', config.$.taskListing);
-
+module.exports = function(config) {
+    gulp.task("help", config.$.taskListing);
 };
-

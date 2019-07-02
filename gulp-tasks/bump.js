@@ -1,7 +1,8 @@
-var gulp = require('gulp');
+"use strict";
 
-module.exports = function (config) {
+var gulp = require("gulp");
 
+module.exports = function(config) {
     var args = config.args,
         log = config.log,
         $ = config.$;
@@ -14,29 +15,24 @@ module.exports = function (config) {
      * --type=major will bump the major version x.*.*
      * --version=1.2.3 will bump to a specific version and ignore other flags
      */
-    gulp.task('bump', function () {
-        var msg = 'Bumping versions';
+    gulp.task("bump", function() {
+        var msg = "Bumping versions";
         var type = args.type;
         var version = args.ver;
         var options = {};
         if (version) {
             options.version = version;
-            msg += ' to ' + version;
+            msg += " to " + version;
         } else {
             options.type = type;
-            msg += ' for a ' + type;
+            msg += " for a " + type;
         }
         log(msg);
 
         return gulp
-            .src([
-                './package.json',
-                './bower.json'
-            ])
+            .src(["./package.json", "./bower.json"])
             .pipe($.print())
             .pipe($.bump(options))
-            .pipe(gulp.dest('../'));
+            .pipe(gulp.dest("../"));
     });
-
 };
-
