@@ -2,12 +2,12 @@
     "name": "angular-template",
     "description": "A template to kick-start AngularJS projects",
     "version": "0.1.1",
-    "author": "Sumant Shekhar",
+    "author": "Naresh Bhatia",
     "license": "MIT",
-    "homepage": "https://github.com/sumant86/angular-patterns",
+    "homepage": "https://github.com/archfirst/angular-patterns",
     "repository": {
         "type": "git",
-        "url": "https://github.com/sumant86/angular-patterns.git"
+        "url": "https://github.com/archfirst/angular-patterns.git"
     },
     "scripts": {
         "init": "npm install",
